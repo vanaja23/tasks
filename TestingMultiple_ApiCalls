@@ -1,0 +1,15 @@
+#!/bin/bash
+
+declare -a array=('url')
+length=${#array[@]}
+echo $length
+for (( i=0; i < $length; i++ ))
+do
+response=$(curl --write-out %{http_code} --silent --output /dev/null ${array[i]})
+echo $response
+if [[ $response -eq 200 ]]; then
+echo “Success”
+else
+echo “Failed”
+fi
+done
