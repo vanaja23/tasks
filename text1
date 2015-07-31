@@ -1,0 +1,20 @@
+#!/bin/bash
+file="apicalls.txt"
+lines=`cat $file`
+for line in $lines; do
+  array+=($line)
+done  
+length=${#array[@]}
+for (( i=0; i < $length; i++ ))
+do
+echo ${array[i]}
+response=$(curl --write-out %{http_code} --silent -k --output /dev/null ${array[i]})
+echo $response
+if [[ $response -eq 200 ]]
+ then
+        echo “Success”
+        else
+        echo “Failed”
+       fi
+#echo "$line"
+done
