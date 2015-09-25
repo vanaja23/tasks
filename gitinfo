@@ -1,0 +1,4 @@
+checking git version
+git --version
+git config --list
+cd /etc/git/local contains all the git config
